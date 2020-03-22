@@ -3,11 +3,29 @@ use wasm_bindgen::prelude::*;
 mod utils;
 
 extern crate web_sys;
+use web_sys::console;
 
 // A macro to provide `println!(..)`-style syntax for `console.log` logging.
-macro_rules! log {
+/* macro_rules! log {
     ( $( $t:tt )* ) => {
-        web_sys::console::log_1(&format!( $( $t )* ).into());
+        console::log_1(&format!( $( $t )* ).into());
+    }
+} */
+
+pub struct Timer<'a> {
+    name: &'a str,
+}
+
+impl<'a> Timer<'a> {
+    pub fn new(name: &'a str) -> Timer<'a> {
+        console::time_with_label(name);
+        Timer { name }
+    }
+}
+
+impl<'a> Drop for Timer<'a> {
+    fn drop(&mut self) {
+        console::time_end_with_label(self.name);
     }
 }
 
@@ -87,6 +105,7 @@ impl Universe {
 #[wasm_bindgen]
 impl Universe {
     pub fn tick(&mut self) {
+        let _timer = Timer::new("Universe::tick");
         let mut next = self.cells.clone();
 
         for row in 0..self.height {
@@ -95,13 +114,13 @@ impl Universe {
                 let cell = self.cells[idx];
                 let live_neighbors = self.live_neighbor_count(row, col);
 
-                log!(
+                /* log!(
                     "cell[{}, {}] is initially {:?} and has {} live neighbors",
                     row,
                     col,
                     cell,
                     live_neighbors
-                );
+                ); */
 
                 let next_cell = match (cell, live_neighbors) {
                     // Rule 1: Any live cell with fewer than two live neighbours
@@ -120,7 +139,7 @@ impl Universe {
                     (otherwise, _) => otherwise,
                 };
 
-                log!("    it becomes {:?}", next_cell);
+                /* log!("    it becomes {:?}", next_cell); */
 
                 next[idx] = next_cell;
             }
@@ -179,7 +198,6 @@ impl Universe {
     }
 
     pub fn toggle_cell(&mut self, row: u32, column: u32) {
-        log!("calling toggle_cell");
         let idx = self.get_index(row, column);
         self.cells[idx].toggle();
     }
