@@ -1,7 +1,7 @@
 ### A simple implementation of Conway's Way Of Life
 
 Conway's Game of Life is a Cellular Automation Method created by John Conway. The evolution is determined by its initial state
-and require no further input, though but clicking cells you can alter their state. [Wili](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
+and require no further input, though but clicking cells you can alter their state. [Wiki](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
 ## Demo
 
