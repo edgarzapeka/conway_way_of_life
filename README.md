@@ -6,9 +6,9 @@ and require no further input, though but clicking cells you can alter their stat
 ## Demo
 
 <p align="center">
-![Auto simulation](https://github.com/edgarzapeka/conway_way_of_life/blob/master/github-demo-assets/life_simulation.gif)
+  <img src="https://github.com/edgarzapeka/conway_way_of_life/blob/master/github-demo-assets/life_simulation.gif">
 </p>
 
 <p align="center">
-![Altered simulation](https://github.com/edgarzapeka/conway_way_of_life/blob/master/github-demo-assets/controlled_life.gif)
+  <img src="https://github.com/edgarzapeka/conway_way_of_life/blob/master/github-demo-assets/controlled_life.gif">
 </p>
